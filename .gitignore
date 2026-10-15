@@ -10,3 +10,6 @@ captures/
 
 # Gemma weights never get committed (557 MB; license forbids redistribution)
 *.litertlm
+
+# Release signing key stays local
+keystore/

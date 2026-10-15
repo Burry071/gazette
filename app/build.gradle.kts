@@ -1,8 +1,18 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
+}
+
+// Release signing lives in keystore/keystore.properties (git-ignored, local only).
+// Without it the release build is simply unsigned; debug builds are unaffected.
+val keystoreProps = Properties()
+val keystorePropsFile = rootProject.file("keystore/keystore.properties")
+if (keystorePropsFile.exists()) {
+    keystorePropsFile.inputStream().use { keystoreProps.load(it) }
 }
 
 android {
@@ -17,9 +27,25 @@ android {
         versionName = "0.1.0"
     }
 
+    signingConfigs {
+        if (keystorePropsFile.exists()) {
+            create("release") {
+                storeFile = rootProject.file(keystoreProps.getProperty("storeFile"))
+                storePassword = keystoreProps.getProperty("storePassword")
+                keyAlias = keystoreProps.getProperty("keyAlias")
+                keyPassword = keystoreProps.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
+            // Phones are arm64; keeps the downloadable APK at half the size.
+            ndk {
+                abiFilters += listOf("arm64-v8a")
+            }
+            signingConfig = signingConfigs.findByName("release")
         }
     }
 
