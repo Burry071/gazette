@@ -1,5 +1,8 @@
-<!-- DRAFT — challenge #hf26challenge (Week 2 Side Hustle). Fill the two
-[ON-DEVICE] placeholders after the first real-device run, then publish. -->
+<!-- DRAFT — challenge #hf26challenge (Week 2 Side Hustle). Remaining before
+publish: (1) Pixel 7 timing to replace/extend the emulator figure in "small
+model, honest numbers"; (2) at publish, upload the five images from
+post_images/ (0-cover.png is the dev.to cover image; the others are
+referenced below by local path) and swap the paths to the uploaded URLs. -->
 
 # Gazette — any payment notification becomes a ledger, entirely on your phone
 
@@ -32,6 +35,8 @@ database to maintain.
 Payments arrive as notifications from *any* app. Gazette listens, reads,
 and files them.
 
+![Today's statement](post_images/1-statement.png)
+
 ## The stack, bottom up
 
 Gemma 3 1B (int4) runs on-device through LiteRT-LM. Around it, five layers:
@@ -49,6 +54,8 @@ Gemma 3 1B (int4) runs on-device through LiteRT-LM. Around it, five layers:
    debited, received, credited…*), a balance-state veto, an event-verb
    rescue, and an OTP veto that discards any OTP-shaped text even if it
    carries an amount. Your one-time codes are never shown, never stored.
+
+![Reading a fresh alert](post_images/2-reading.png)
 
 ## The part I'm proud of: small model, honest numbers
 
@@ -71,8 +78,10 @@ override is a written rule you can audit — not a bigger model you have to
 trust.
 
 On desktop CPU the 1B pipeline averaged 8.6s per notification across all 30
-corpus entries (the 4B: 18.2s). [ON-DEVICE TIMING — placeholder, measured
-after first phone run.]
+corpus entries (the 4B: 18.2s). On the Android emulator — an x86_64 box with
+no phone-class acceleration — the identical on-device pipeline took ~2.3
+minutes per notification, end to end from notification posted to ledger row
+(two measured runs: 137s, 146s). [PIXEL 7 TIMING — measure before publish.]
 
 **Honest caveat:** that corpus is one phone's notifications, tuned in-sample.
 It proves the pipeline works end-to-end and that nothing about it is
@@ -82,11 +91,15 @@ getting added.
 ## Privacy, structurally
 
 - No INTERNET permission. Not "we promise not to call home" — the OS forbids it.
-- The model file is downloaded by *you*, from Google's Gemma release, and
-  pushed to the phone. The app never downloads anything.
+- The model file is brought in by *you*: GET THE FILE opens Google's Gemma
+  release page in your browser, you download the file there, and hand it to
+  the app through the system file picker. The app never downloads anything —
+  it can't.
 - OTPs are vetoed by rule, not by model judgment.
 - The notification text is stored as received — on your device, in a local
   Room database, and nowhere else.
+
+![The one permission Gazette asks for](post_images/4-permission.png)
 
 ## The design
 
@@ -101,12 +114,22 @@ pulses at the top and then either files itself or disappears.
 
 Kotlin, Jetpack Compose, Room, LiteRT-LM. Android 9+, arm64.
 
-1. `./gradlew :app:installDebug`
-2. Grant notification access.
-3. Drop in the model file (one `adb push`, ~557 MB, from
-   [litert-community/Gemma3-1B-IT](https://huggingface.co/litert-community/Gemma3-1B-IT)).
+Grab the signed APK straight from the repo
+([apk/Gazette-v0.1.0-arm64.apk](https://github.com/Burry071/gazette/raw/main/apk/Gazette-v0.1.0-arm64.apk)),
+or build from source with `./gradlew :app:installDebug`.
 
-Full instructions in the repo README.
+1. Open Gazette, tap **ENABLE ACCESS**, allow it in the system list.
+2. Tap **GET THE FILE** — it opens the Gemma release page; accept the
+   license and download `gemma3-1b-it-int4.litertlm` (~557 MB).
+3. Back in Gazette, tap **I HAVE THE FILE** and pick the download. It is
+   copied into the app's private storage.
+
+![First run](post_images/3-setup.png)
+
+The first read after import warms the model up (on the emulator, ~2.5
+minutes; the phone number lands in this post before publish). After that,
+every payment notification becomes a row as it arrives. Full instructions
+in the repo README.
 
 ## What's next
 
@@ -116,4 +139,4 @@ Full instructions in the repo README.
 - Dark theme — v1 is deliberately daylight-only, because the moment this
   screen gets used is standing in a bazaar at noon
 
-Repo: [GITHUB URL — added at publish]
+Repo: [github.com/Burry071/gazette](https://github.com/Burry071/gazette)
