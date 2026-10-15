@@ -73,6 +73,8 @@ fun StatementScreen(
     modelStatus: ModelStatus,
     listenerGranted: Boolean,
     onEnableAccess: () -> Unit,
+    onGetModelFile: () -> Unit,
+    onPickModelFile: () -> Unit,
 ) {
     val insets = WindowInsets.systemBars.asPaddingValues()
     val readingVisible by readingRowVisible(reading)
@@ -119,7 +121,21 @@ fun StatementScreen(
 
                 modelStatus == ModelStatus.MISSING && entries.isEmpty() -> item(key = "setup") {
                     Spacer(Modifier.height(24.dp))
-                    Paragraph("Gazette needs its offline reading file. See the README for the one-step setup.")
+                    Column(Modifier.fillMaxWidth()) {
+                        Paragraph(
+                            "Gazette reads payment alerts with a small AI file that lives only on this phone. " +
+                                "Download it once — about 550 MB — and it never leaves your device."
+                        )
+                        Spacer(Modifier.height(16.dp))
+                        ActionLink("GET THE FILE", onGetModelFile)
+                        Spacer(Modifier.height(12.dp))
+                        ActionLink("I HAVE THE FILE", onPickModelFile)
+                    }
+                }
+
+                modelStatus == ModelStatus.LOADING && entries.isEmpty() -> item(key = "loading") {
+                    Spacer(Modifier.height(24.dp))
+                    Paragraph("Preparing the offline reader…")
                 }
 
                 entries.isEmpty() -> item(key = "empty") {
@@ -392,17 +408,22 @@ private fun ParagraphAction(sentence: String, action: String, onAction: () -> Un
     Column(Modifier.fillMaxWidth()) {
         Text(sentence, style = GazetteType.body, color = GazetteColors.InkSoft)
         Spacer(Modifier.height(16.dp))
-        val interaction = remember { MutableInteractionSource() }
-        val pressed by interaction.collectIsPressedAsState()
-        Text(
-            action,
-            style = GazetteType.label.copy(textDecoration = TextDecoration.Underline),
-            color = GazetteColors.Ink,
-            modifier = Modifier
-                .alpha(if (pressed) 0.6f else 1f)
-                .clickable(interactionSource = interaction, indication = null, onClick = onAction),
-        )
+        ActionLink(action, onAction)
     }
+}
+
+@Composable
+private fun ActionLink(text: String, onClick: () -> Unit) {
+    val interaction = remember { MutableInteractionSource() }
+    val pressed by interaction.collectIsPressedAsState()
+    Text(
+        text,
+        style = GazetteType.label.copy(textDecoration = TextDecoration.Underline),
+        color = GazetteColors.Ink,
+        modifier = Modifier
+            .alpha(if (pressed) 0.6f else 1f)
+            .clickable(interactionSource = interaction, indication = null, onClick = onClick),
+    )
 }
 
 // The reading row only materializes if the pipeline is still working after

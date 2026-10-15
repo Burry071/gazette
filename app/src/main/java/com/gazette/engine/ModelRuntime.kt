@@ -1,6 +1,7 @@
 package com.gazette.engine
 
 import android.content.Context
+import android.net.Uri
 import com.google.ai.edge.litertlm.Backend
 import com.google.ai.edge.litertlm.Engine
 import com.google.ai.edge.litertlm.EngineConfig
@@ -15,14 +16,35 @@ import java.io.File
 import kotlin.random.Random
 
 // Loads the Gemma .litertlm file from app storage and adapts LiteRT-LM to the
-// pipeline's LlmEngine. The model file arrives by adb push (see README); the
-// app itself never downloads anything and holds no INTERNET permission.
+// pipeline's LlmEngine. The file arrives either by adb push into external
+// files (see README) or via the in-app SAF picker; the app itself never
+// downloads anything and holds no INTERNET permission.
 object ModelRuntime {
 
     const val MODEL_FILENAME = "model.litertlm"
 
     fun start(context: Context) {
         CoroutineScope(Dispatchers.Default).launch { load(context.applicationContext) }
+    }
+
+    // User picked a .litertlm through the system file picker (no storage
+    // permission needed). Copy it into internal storage, then load.
+    fun importFrom(context: Context, uri: Uri) {
+        CoroutineScope(Dispatchers.Default).launch {
+            val app = context.applicationContext
+            val internal = File(app.filesDir, MODEL_FILENAME)
+            LedgerEngine.modelStatus.value = ModelStatus.LOADING
+            try {
+                app.contentResolver.openInputStream(uri)?.use { input ->
+                    internal.outputStream().use { output -> input.copyTo(output) }
+                } ?: throw IllegalStateException("Picker returned no stream")
+            } catch (t: Throwable) {
+                internal.delete()
+                LedgerEngine.modelStatus.value = ModelStatus.MISSING
+                return@launch
+            }
+            load(app)
+        }
     }
 
     private fun load(context: Context) {
@@ -47,6 +69,9 @@ object ModelRuntime {
             LedgerEngine.engineProvider = { Adapter(engine) }
             LedgerEngine.modelStatus.value = ModelStatus.READY
         } catch (t: Throwable) {
+            // A bad or foreign file must not wedge setup forever: remove it so
+            // the next push or picker pick gets a clean start.
+            internal.delete()
             LedgerEngine.engineProvider = { null }
             LedgerEngine.modelStatus.value = ModelStatus.MISSING
         }
