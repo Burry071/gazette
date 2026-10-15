@@ -1,0 +1,10 @@
+{
+  "image": "statement-screen.png",
+  "surface": "Statement screen (main ledger) — portrait 1024x1792",
+  "tool": "harness ImageGen",
+  "promptFile": "statement-screen.prompt.txt",
+  "promptEmbeddedInPng": true,
+  "created": "2026-10-14",
+  "approved": true,
+  "notes": "Comp v3 — regenerated 2026-10-14 with the locked global name 'Gazette' (was the working title 'Paisa Ledger'). Wordmark renders over-scale in the comp (letterhead intent); DESIGN.md token (14sp) is law for the build. Typeface in comp is an approximation of Schibsted Grotesk. Content rows are illustrative sample data (sanitized pseudonyms). Approved by the user 2026-10-14 together with the name \"Gazette\"."
+}

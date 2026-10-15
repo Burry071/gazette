@@ -1,0 +1,42 @@
+# Labeled notification corpus v1 — extraction accuracy test
+# FORMAT: label | amount | direction | text
+#   label     = T (transaction) or J (junk)
+#   amount    = expected number (no commas) or - for junk
+#   direction = sent / received / - (junk)
+# Captured from the test phone, then SANITIZED: personal names are
+# pseudonyms, account numbers / till IDs / TIDs are masked, OTP codes
+# replaced with placeholder digits. Format structure preserved.
+# Source tags: [SMS-8558] [NAYAPAY-PUSH] [ZONG/PROMO]
+
+T | 70.00 | sent | Rs 70.00 paid to New QUETTA T TWENTY RESTUARENT, Till ID: 98XXXXXXX on 06/09/2026 at 22:22:49. Fee 0.00, TID: 72XXXXXXXXXX via QR Code. [SMS-8558]
+T | 100.00 | sent | Rs 100.00 paid to New QUETTA T TWENTY RESTUARENT, Till ID: 98XXXXXXX on 05/09/2026 at 00:03:35. Fee 0.00, TID: 72XXXXXXXXXX via QR Code. [SMS-8558]
+T | 80.00 | sent | Rs 80.00 paid to New QUETTA T TWENTY RESTUARENT, Till ID: 98XXXXXXX on 04/09/2026 at 01:33:02. Fee 0.00, TID: 72XXXXXXXXXX via QR Code. [SMS-8558]
+T | 700.00 | sent | Dear HAMZA IQBAL, an amount of Rs. 700 has been successfully sent to AHMED RAZA of IBAN No: ****6116 on 2026-09-03 at 16:13:25. TID:72XXXXXXXXXX via RAAST [SMS-8558]
+T | 6000.00 | sent | Dear USMAN TARIQ, an amount of Rs. 6000 has been successfully sent to HASSAN ALI of IBAN No: ****2207 on 29-08-2026 at 18:07:06. TID:72XXXXXXXXXX via RAAST [SMS-8558]
+T | 1500.00 | received | Rs 1,500.00 received from , A/C: XXXXXXXXXXXXXX22 on 29/08/2026 at 17:45:11. TID: 72XXXXXXXXXX via IBFT [SMS-8558]
+T | 2500.00 | received | TID 72XXXXXXXXXX You have received Rs 2,500.00 from ACME TECH SOLUTIONS (PRIVATE) LIMITED on 29/08/2026 at 05:43:47 PM. [SMS-8558]
+T | 500.00 | received | Rs 500.00 received from JazzCash A/C: 0300XXXXXXX in your EasyPaisa A/C: 0310XXXXXXX on 29/08/2026 at 15:50:35. TID:72XXXXXXXXXX via IBFT [SMS-8558]
+T | 2000.00 | received | Rs 2,000.00 received from , A/C: XXXXXXXXXXXXXX22 on 29/08/2026 at 17:49:19. TID: 72XXXXXXXXXX via IBFT [SMS-8558]
+T | 2 | received | Rs. 2 received from Ahmed Raza. Just the kind of notification we like. [NAYAPAY-PUSH]
+J | - | - | Rs 12,345.67 is your available balance on JazzCash Mobile A/C: USMAN TARIQ Fee: 0.58, as of 29/08/2026 at 06:05:33 PM. [SMS-8558]
+J | - | - | Apka Balance is call k liay nakafi hai. Abhi "Y" likh kr Reply karnay par Rs.15 ka Zong Advance Loan hasil Karen @Rs.3.5+tax [ZONG]
+J | - | - | Bachat alert! Sirf Rs.30 se shuru honay wali discounted offers khas apke liye, Bachat Bazaar se abhi hasil karein. Dial *3535# ya retailer se rabta karein. [ZONG]
+J | - | - | Hey! lagta hai aap humein bhool gaye lekin humein aap yaad hein. Use code "WB400" and get Rs. 400/- off on your next purchase. [PROMO]
+J | - | - | Thank you for activating AR VR Games. Start Playing now varcadegame.com Rs. 23.9/day. You can cancel anytime by sending 1 to 3557 [PROMO]
+J | - | - | Last chance! Avail 15% Early Bird discount on Exscape at PKR 12/day. Offer ends 17 Jul 2026. Standard price PKR 14/day applies thereafter. T&Cs apply. [PROMO]
+J | - | - | Hajj 2026 ZONG 5G brings WhatsApp Overload in KSA ! Use 3.5GB for PKR 2 [ZONG]
+J | - | - | SPECIAL OFFER! Moaziz Sarif, abhi dial keren *5566# aur payen 2 GB TikTok data sirf 2 Rs ke Balance mai 1 din ke liye [ZONG]
+J | - | - | App apne bundle ya muft MBs, mins, SMS ki malomaat ke liye *102# dial ker saktey hain. Rs10 Paisa + Tax [ZONG]
+J | - | - | Your OTP code for Comedy Corner is 0000 [OTP]
+J | - | - | <#> Your one time pin is 0000. Use this OTP for verification on Dastak Home Delivery application. Do not give this to any one. h/XXXXXXXX [OTP]
+J | - | - | OTP code for Registration on NSIS is 0000. For issues [OTP]
+J | - | - | <#> Jazzcash: Warning! Do not share your new device registration OTP with anyone. Your OTP is Xx0000 Xxx00000 [OTP]
+J | - | - | Your OTP for Fantasy 6 is: 0000 Valid for 5 minutes. [OTP]
+J | - | - | Welcome to JazzCash App! Get Started with JazzCash Bonus of Rs Rs 100.00. Balance: Rs 100.00 TID: 71XXXXXXXXXX. [SMS-8558]
+J | - | - | Boys Use This Code 'F1RSTDROP' To Get 15% Discount Only First 4 Person Can Avail This Offer [WHATSAPP]
+J | - | - | 157 messages from 2 chats [WHATSAPP]
+J | - | - | Your MPIN for JazzCash Mobile Account has been created. Your mobile number is also your Mobile Account number. Never share your MPIN with anyone. Helpline: 4444 [SMS-8558]
+
+# --- SYNTHETIC (not real captures; app-push sent-side variants for coverage; excluded from headline accuracy) ---
+T | 100 | sent | Rs. 100 spent at KFC Gulberg. [SYNTH-PUSH]
+T | 250 | sent | Rs. 250 sent to Ali Raza. [SYNTH-PUSH]

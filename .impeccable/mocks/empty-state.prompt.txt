@@ -1,0 +1,9 @@
+Flat high-fidelity mobile app UI screenshot, portrait phone screen, full-bleed (no device frame, no perspective). Empty state of an Android app called "Gazette" — a payment ledger typeset like a premium minimal bank statement. Same design system: paper white with a whisper of pale sage-green (#F6F8F4); near-black ink (#161A17); muted sage-gray text (#5E6660); one deep forest-pine green accent (#0E4F34); pale hairlines (#E0E4DC); sharp corners; no cards, no shadows, no gradients, no icons. All horizontal rules are inset to a 24px side margin column, never full-bleed to the screen edges.
+
+Top row: exactly two elements. Left: the wordmark "Gazette" in near-black, set small and quiet like a letterhead, NOT a headline. Right: a tiny uppercase letter-spaced muted sage-gray label "OCTOBER". Exactly one "OCTOBER" label on the entire screen.
+
+Below: two large money totals side by side, tiny uppercase letter-spaced labels above each figure: left "RECEIVED" above the number "Rs 0" in deep pine green; right "SENT" above the number "Rs 0" in near-black. Large semibold tabular figures, small muted "Rs" marks at about 60% size before the digits.
+
+Below the totals: the classic accounting double rule — two thin pale-gray hairlines running the content width inside the margins, 3px apart.
+
+The rest of the screen is clean empty paper: under the double rule, one quiet sentence in small muted gray-green text, left-aligned and wrapping at two lines: "No payments yet. New payment notifications will appear here." Beneath the sentence: a single thin pale hairline, then plain empty paper — no boxes, no outlines, no rectangles. Swiss typographic statement aesthetic — premium, calm, minimal, flat 2D vector-style rendering, crisp legible text.

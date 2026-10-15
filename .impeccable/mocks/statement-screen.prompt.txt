@@ -1,0 +1,21 @@
+Flat high-fidelity mobile app UI screenshot, portrait phone screen, full-bleed (no device frame, no perspective, no hands). An Android app called "Gazette" — a payment-notification ledger typeset like a premium minimal bank statement. Background paper white with a whisper of pale sage-green (#F6F8F4). Strict single column, 24px side margins; every element inside the margins; all horizontal hairlines inset to the text column, never full-bleed. Sharp corners everywhere, no cards, no boxes, no shadows, no gradients, no icons, no images.
+
+Top row: the wordmark "Gazette" in near-black (#161A17) set SMALL and quiet — the same visual size as the "OCTOBER" label beside it, like a letterhead, NOT a headline; at right, a tiny uppercase letter-spaced muted sage-gray label "OCTOBER".
+
+Below: two large money totals side by side; each has a tiny uppercase letter-spaced label above its figure. Left: label "RECEIVED" above the number "Rs 3,502" set large in deep forest-pine green (#0E4F34). Right: label "SENT" above the number "Rs 6,850" in near-black ink. Figures in tabular numerals, semibold modern grotesque; the small "Rs" currency mark sits before each number at roughly 60% size in muted gray-green.
+
+Below the totals block: a classic accounting double rule — two thin pale-gray hairlines (#E0E4DC) running the content width (inset to the margins), 3px apart.
+
+Then the ledger list directly on the paper, rows separated only by single 1px pale hairlines inset to the margins. First list row is transient: tiny uppercase muted label "READING" on the left with a pale gray rounded shimmer bar standing in for the amount at right; beneath the label a small muted gray-green line of raw text "Rs 500.00 received from JazzCash A/C: 0300XXXXXXXX".
+
+Then a day group heading: tiny uppercase letter-spaced muted sage-gray label "TODAY".
+
+Row 1: left tiny uppercase letter-spaced label "RECEIVED · 6:12 PM" in deep pine green; below it small muted gray-green raw notification text "Rs 2,000.00 received from Ahmed Raza. TID: 72XXXXXXXX via IBFT"; right side right-aligned amount "Rs 2,000" in deep pine green, semibold tabular figures.
+
+Row 2: tiny uppercase label "SENT · 1:40 PM" in muted gray-green; below it small muted raw text "Rs 70.00 paid to New Quetta T-Twenty Restaurant, Till ID: 98XXXXXXX via QR Code"; right-aligned amount "Rs 70" in near-black semibold.
+
+Row 3: tiny uppercase label "SENT · 11:05 AM" in muted gray-green; below, small muted raw text "An amount of Rs 600 has been successfully sent to Hassan Ali via RAAST"; right-aligned amount "Rs 600" in near-black semibold.
+
+Row 4: tiny uppercase label "RECEIVED · 9:02 AM" in deep pine green; below, small muted raw text "Rs 2 received from Ahmed Raza. Just the kind of notification we like."; right-aligned amount "Rs 2" in deep pine green semibold.
+
+Typography: modern grotesque sans in the style of Schibsted Grotesk, strong hierarchy, precise alignment, tabular numerals forming a perfect right-aligned amount column. Overall feel: Swiss typographic bank statement — premium, calm, editorial precision, generous whitespace. Flat 2D vector-style rendering, crisp legible text.

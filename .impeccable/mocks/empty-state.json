@@ -1,0 +1,10 @@
+{
+  "image": "empty-state.png",
+  "surface": "Statement screen — empty state — portrait 1024x1792",
+  "tool": "harness ImageGen",
+  "promptFile": "empty-state.prompt.txt",
+  "promptEmbeddedInPng": true,
+  "created": "2026-10-14",
+  "approved": true,
+  "notes": "Comp v3 — regenerated 2026-10-14 with the locked global name 'Gazette'; an intermediate post-rename pass that duplicated the OCTOBER label was discarded and re-rendered once. Wordmark renders over-scale in the comp (letterhead intent); DESIGN.md token (14sp) is law for the build. Typeface in comp is an approximation of Schibsted Grotesk. Approved by the user 2026-10-14 together with the name \"Gazette\"."
+}
