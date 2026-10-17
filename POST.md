@@ -89,6 +89,25 @@ It proves the pipeline works end-to-end and that nothing about it is
 bank-specific; it does not prove universal coverage. Fresh captures keep
 getting added.
 
+## Why open innovation matters here
+
+Gazette is only possible — and only sellable — because the model is
+open-weight and runs on the phone:
+
+- **Zero marginal cost is what makes a small app viable.** Someone who
+  moves money across five wallets and banks would pay a few dollars for
+  a ledger that just works. If every notification cost an API call, the
+  same app would need a subscription to survive — and a subscription for
+  a notification ledger is a hard sell. Running Gemma locally costs
+  nothing per read.
+- **Privacy is a feature, not a policy page.** Because the weights are
+  open, the whole pipeline can live on the device. The missing INTERNET
+  permission isn't a workaround; it's the selling point.
+- **No lock-in.** The pipeline is model-agnostic over LiteRT-LM. When a
+  better small model ships, Gazette gets it with a file swap — no
+  renegotiated pricing, no deprecations, nobody else deciding tomorrow
+  what my app costs to run.
+
 ## Privacy, structurally
 
 - No INTERNET permission. Not "we promise not to call home" — the OS forbids it.
