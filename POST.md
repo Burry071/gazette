@@ -81,7 +81,8 @@ On desktop CPU the 1B pipeline averaged 8.6s per notification across all 30
 corpus entries (the 4B: 18.2s). On the Android emulator — an x86_64 box with
 no phone-class acceleration — the identical on-device pipeline took ~2.3
 minutes per notification, end to end from notification posted to ledger row
-(two measured runs: 137s, 146s). [PIXEL 7 TIMING — measure before publish.]
+(two measured runs: 137s, 146s). A physical-phone timing will land in this
+post as soon as a device run is logged — no estimate, no vaporware numbers.
 
 **Honest caveat:** that corpus is one phone's notifications, tuned in-sample.
 It proves the pipeline works end-to-end and that nothing about it is
@@ -127,9 +128,8 @@ or build from source with `./gradlew :app:installDebug`.
 ![First run](post_images/3-setup.png)
 
 The first read after import warms the model up (on the emulator, ~2.5
-minutes; the phone number lands in this post before publish). After that,
-every payment notification becomes a row as it arrives. Full instructions
-in the repo README.
+minutes end to end). After that, every payment notification becomes a row as
+it arrives. Full instructions in the repo README.
 
 ## What's next
 
@@ -140,3 +140,5 @@ in the repo README.
   screen gets used is standing in a bazaar at noon
 
 Repo: [github.com/Burry071/gazette](https://github.com/Burry071/gazette)
+
+Built for the DEV × Hacktoberfest Week 2 "Side Hustle" challenge (#hf26challenge).
